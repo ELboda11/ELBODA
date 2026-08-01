@@ -35,12 +35,11 @@ client.on("messageCreate", async (message) => {
   let newLevel = Math.floor(xp / 100);
 
   if (newLevel > oldLevel) {
-
     const channel = client.channels.cache.get(levelChannelID);
 
     if (channel) {
       channel.send(
-        `🎉 مبروك ${message.author}!\n⭐ وصلت إلى Level **${newLevel}**`
+        `🎉 مبروك ${message.author}! وصلت إلى Level **${newLevel}**`
       );
     }
   }
@@ -55,16 +54,15 @@ client.on("messageCreate", async (message) => {
       .sort((a, b) => b.value - a.value)
       .slice(0, 10);
 
-
     let text = "🏆 **XP Leaderboard**\n\n";
 
     let place = 1;
 
     for (const user of users) {
 
-      const userID = user.id.replace("xp_", "");
+      const id = user.id.replace("xp_", "");
 
-      const member = await message.guild.members.fetch(userID)
+      const member = await message.guild.members.fetch(id)
         .catch(() => null);
 
       if (member) {
